@@ -1,3 +1,4 @@
+import { title } from 'process';
 import React, { useState, useEffect, useRef } from 'react';
 import { ITodo } from '../models/data';
 import { TodoList } from './TodoList';
@@ -30,10 +31,12 @@ const App: React.FC = () => {
 			]);
 		}
 		setValue('');
+		localStorage.setItem('tasks', JSON.stringify(todos));
 	};
 
 	const removeTodo = (id: number): void => {
 		setTodos(todos.filter(todo => todo.id !== id));
+		localStorage.setItem('tasks', JSON.stringify(todos));
 	};
 
 	const toggleTodo = (id: number): void => {
@@ -46,10 +49,14 @@ const App: React.FC = () => {
 				};
 			})
 		);
+		localStorage.setItem('tasks', JSON.stringify(todos));
 	};
-
+	let storageTask = localStorage.getItem('tasks');
 	useEffect(() => {
 		inputRef.current?.focus();
+		if (storageTask) {
+			setTodos(JSON.parse(storageTask));
+		}
 	}, []);
 	return (
 		<div className='container'>
