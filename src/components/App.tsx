@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ITodo } from '../types/data';
+import { TodoList } from './TodoList';
 
 const App: React.FC = () => {
 	const [value, setValue] = useState('');
@@ -24,6 +25,7 @@ const App: React.FC = () => {
 				<input value={value} onChange={ev => setValue(ev.target.value)} />
 				<button onClick={addTodo}>Add</button>
 			</div>
+			<TodoList items={todos} />
 		</div>
 	);
 };

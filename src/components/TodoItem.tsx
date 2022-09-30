@@ -1,3 +1,7 @@
 import React from 'react';
 
-export const TodoItem: React.FC = props => {};
+const TodoItem: React.FC = props => {
+	return <div></div>;
+};
+
+export { TodoItem };

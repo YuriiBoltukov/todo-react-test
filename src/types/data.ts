@@ -3,3 +3,9 @@ export interface ITodo {
 	title: string;
 	complete: boolean;
 }
+
+export interface ITodoItem extends ITodo {}
+
+export interface ITodoList {
+	items: ITodo[];
+}
