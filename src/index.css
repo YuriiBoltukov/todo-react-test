@@ -1,13 +1,114 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: darkgrey;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+.container {
+	max-width: 1200px;
+	padding: 16px;
+	margin: 0 auto;
+}
+
+.header {
+	text-align: center;
+	font-size: 36px;
+	color: #fff;
+}
+
+.add-btn {
+	position: relative;
+	appearance: none;
+	background: #f72359;
+	padding: 1em 2em;
+	border: none;
+	color: white;
+	font-size: 1.2em;
+	cursor: pointer;
+	outline: none;
+	overflow: hidden;
+	border-radius: 15px;
+	margin-left: 10px;
+}
+span {
+	position: relative;
+	pointer-events: none;
+}
+
+.add-btn::before {
+	--size: 0;
+	content: '';
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	width: var(--size);
+	height: var(--size);
+	background: radial-gradient(circle closest-side, #4405f7, transparent);
+	transform: translate(-50%, -50%);
+	transition: width 0.2s ease, height 0.2s ease;
+}
+
+.add-btn:hover::before {
+	--size: 400px;
+}
+
+.input {
+	padding: 15px;
+	font-size: 30px;
+	box-shadow: 0 0 15px 4px rgb(74 150 87 / 6%);
+	border: 0;
+	line-height: 30px;
+	width: 380px;
+}
+.section {
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+
+.item-wrapper {
+	width: 515px;
+}
+.todo-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #fff;
+	margin: 5px;
+	padding: 0 10px;
+}
+
+.checkbox {
+	width: 25px;
+	height: 25px;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.completed-task {
+	text-decoration-line: line-through;
+}
+
+.delete-btn {
+	color: white;
+	width: 45px;
+	height: 45px;
+	border-radius: 5px;
+	border-color: white;
+	background-color: darkgray;
+	outline: none;
+	cursor: pointer;
+	font-size: 30px;
 }
