@@ -36,7 +36,11 @@ const App: React.FC = () => {
 
 	const removeTodo = (id: number): void => {
 		setTodos(todos.filter(todo => todo.id !== id));
-		localStorage.setItem('tasks', JSON.stringify(todos));
+		if (todos.length >= 0) {
+			localStorage.setItem('tasks', JSON.stringify(todos));
+		} else {
+			localStorage.clear();
+		}
 	};
 
 	const toggleTodo = (id: number): void => {

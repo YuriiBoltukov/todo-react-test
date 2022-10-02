@@ -8,6 +8,10 @@ body {
 	background-color: darkgrey;
 }
 
+h3 {
+	margin: 0;
+}
+
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
@@ -28,7 +32,7 @@ code {
 .add-btn {
 	position: relative;
 	appearance: none;
-	background: #f72359;
+	background: gray;
 	padding: 1em 2em;
 	border: none;
 	color: white;
@@ -36,8 +40,7 @@ code {
 	cursor: pointer;
 	outline: none;
 	overflow: hidden;
-	border-radius: 15px;
-	margin-left: 10px;
+	border-radius: 0 8px 8px 0;
 }
 span {
 	position: relative;
@@ -52,7 +55,7 @@ span {
 	top: var(--y);
 	width: var(--size);
 	height: var(--size);
-	background: radial-gradient(circle closest-side, #4405f7, transparent);
+	background: radial-gradient(circle closest-side, darkgray, transparent);
 	transform: translate(-50%, -50%);
 	transition: width 0.2s ease, height 0.2s ease;
 }
@@ -64,7 +67,7 @@ span {
 .input {
 	padding: 15px;
 	font-size: 30px;
-	box-shadow: 0 0 15px 4px rgb(74 150 87 / 6%);
+	border-radius: 8px 0 0 8px;
 	border: 0;
 	line-height: 30px;
 	width: 380px;
@@ -76,7 +79,7 @@ span {
 }
 
 .item-wrapper {
-	width: 515px;
+	width: 535px;
 }
 .todo-item {
 	display: flex;
@@ -84,7 +87,16 @@ span {
 	justify-content: space-between;
 	background-color: #fff;
 	margin: 5px;
-	padding: 0 10px;
+	padding: 10px;
+}
+
+.todo-item:first-child {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.todo-item:last-child {
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 
 .checkbox {
@@ -94,21 +106,83 @@ span {
 
 .title {
 	font-size: 20px;
-	font-weight: 500;
+	width: 100%;
+	margin: 0 8px 0 16px;
+	overflow: hidden;
+	word-wrap: break-word;
 }
 
 .completed-task {
 	text-decoration-line: line-through;
 }
 
-.delete-btn {
-	color: white;
-	width: 45px;
+.btn-wrapper {
+	display: flex;
+	padding: 4px;
+}
+
+.btn {
+	margin: 4px;
+	width: 50px;
 	height: 45px;
-	border-radius: 5px;
-	border-color: white;
-	background-color: darkgray;
-	outline: none;
-	cursor: pointer;
 	font-size: 30px;
+	position: relative;
+	overflow: hidden;
+	transition: background 400ms;
+	background-color: #fff;
+	outline: 0;
+	border: 0;
+	border-radius: 0.25rem;
+	cursor: pointer;
+}
+
+.ripple {
+	background-position: center;
+	transition: background 0.8s;
+}
+
+.ripple:hover {
+	background: lightgray radial-gradient(circle, transparent 1%, gray 1%)
+		center/15000%;
+}
+
+.ripple:active {
+	background-color: darkgray;
+	background-size: 100%;
+	transition: background 0s;
+}
+
+.edit {
+	width: 40px;
+}
+
+.modal {
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	pointer-events: none;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+.modal-content {
+	padding: 20px;
+	border-radius: 12px;
+	background-color: white;
+}
+
+.modal.active {
+	opacity: 1;
+	pointer-events: all;
+}
+
+input[type='checkbox'] {
+	accent-color: gray;
 }
