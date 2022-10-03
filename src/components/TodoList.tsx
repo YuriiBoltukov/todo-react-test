@@ -1,16 +1,18 @@
 import React from 'react';
 import { TodoItem } from './TodoItem';
-import { ITodoList } from '../models/data';
+import { ITodo, ITodoList } from '../models/data';
 
-const TodoList: React.FC<ITodoList> = props => {
-	const { items, toggleTodo, removeTodo } = props;
+const TodoList: React.FC<ITodoList> = (props: ITodoList) => {
+	const { items, toggleComplete, removeTodo, updateTodo }: ITodoList = props;
+
 	return (
 		<div className='item-wrapper'>
-			{items.map(todo => (
+			{items.map((todo: ITodo) => (
 				<TodoItem
 					key={todo.id}
-					toggleTodo={toggleTodo}
+					toggleComplete={toggleComplete}
 					removeTodo={removeTodo}
+					updateTodo={updateTodo}
 					{...todo}
 				/>
 			))}

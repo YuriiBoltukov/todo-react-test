@@ -1,65 +1,72 @@
 import React, { useState } from 'react';
-import pencil from './pencil.svg';
-import trash from './trash.svg';
+import pencilIcon from '../assets/icons/pencil.svg';
+import trashIcon from '../assets/icons/trash.svg';
 import { ITodoItem } from '../models/data';
 import Modal from './Modal';
 
-const TodoItem: React.FC<ITodoItem> = props => {
-	const { id, title, complete, toggleTodo, removeTodo } = props;
-	const [modalActive, setModalActive] = useState(false);
-	const [value, setValue] = useState(title);
+const TodoItem: React.FC<ITodoItem> = (props: ITodoItem) => {
+	const {
+		id,
+		title,
+		complete,
+		toggleComplete,
+		removeTodo,
+		updateTodo,
+	}: ITodoItem = props;
 
-	const updateTask = (value: string) => {
-		setValue(value);
+	/**
+	 * modal window state
+	 */
+	const [modalActive, setModalActive] = useState(false);
+
+	/**
+	 * for updating todo
+	 * @param {string} value
+	 */
+	const updateTask = (value: string): void => {
+		updateTodo(id, value);
 		setModalActive(false);
 	};
 
-	const openModal = () => {
+	/**
+	 * for opening modal window
+	 */
+	const openModal = (): void => {
 		setModalActive(true);
 	};
 
-	const defineTitleStyle = (complete: boolean) => {
-		let titleStyle = 'title';
-		if (complete === true) {
-			titleStyle += ' completed-task';
-		}
-		return titleStyle;
-	};
-
 	return (
-		<>
-			<div className='todo-item'>
-				<div>
-					<label htmlFor='checkbox'></label>
-					<input
-						className='checkbox'
-						type='checkbox'
-						checked={complete}
-						onChange={() => toggleTodo(id)}
-					/>
-				</div>
-				<p className={defineTitleStyle(complete)}>{value} </p>
-				<div className='btn-wrapper'>
-					<div className='edit-btn'>
-						<button className='btn ripple' onClick={openModal}>
-							<img className='edit' src={pencil} alt='edit' />
-						</button>
-					</div>
-
-					<button className='btn ripple' onClick={() => removeTodo(id)}>
-						<img src={trash} alt='trash' />
+		<div className='todo-item'>
+			<div>
+				<label htmlFor='checkbox'></label>
+				<input
+					className='checkbox'
+					type='checkbox'
+					checked={complete}
+					onChange={() => toggleComplete(id)}
+				/>
+			</div>
+			<p className={complete ? 'title completed-task' : 'title'}>{title}</p>
+			<div className='btn-wrapper'>
+				<div className='edit-btn'>
+					<button className='btn ripple' onClick={openModal}>
+						<img className='edit' src={pencilIcon} alt='To edit' />
 					</button>
 				</div>
-				{modalActive && (
-					<Modal
-						updateTask={updateTask}
-						active={modalActive}
-						setActive={setModalActive}
-						value={title}
-					/>
-				)}
+
+				<button className='btn ripple' onClick={() => removeTodo(id)}>
+					<img src={trashIcon} alt='To trash' />
+				</button>
 			</div>
-		</>
+			{modalActive && (
+				<Modal
+					updateTask={updateTask}
+					active={modalActive}
+					setActive={setModalActive}
+					value={title}
+				/>
+			)}
+		</div>
 	);
 };
 

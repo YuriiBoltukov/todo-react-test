@@ -5,12 +5,14 @@ export interface ITodo {
 }
 
 export interface ITodoItem extends ITodo {
-	toggleTodo: (id: number) => void;
+	toggleComplete: (id: number) => void;
 	removeTodo: (id: number) => void;
+	updateTodo: (id: number, title: string) => void;
 }
 
 export interface ITodoList {
 	items: ITodo[];
-	toggleTodo: (id: number) => void;
+	toggleComplete: (id: number) => void;
 	removeTodo: (id: number) => void;
+	updateTodo: (id: number, title: string) => void;
 }
