@@ -40,9 +40,7 @@ export default function Modal(props: any) {
 	}, []);
 
 	return (
-		<div
-			className={` ${isActive ? 'modal active' : 'active'}`} // TODO fix
-			onClick={() => setActive(false)}>
+		<div className='modal' onClick={() => setActive(false)}>
 			<div
 				className='modal-content'
 				onClick={(event: React.MouseEvent) => event.stopPropagation()}>
@@ -62,15 +60,15 @@ export default function Modal(props: any) {
 					/>
 				</div>
 				<div className='modal-footer'>
+					<button className='modal-btn ripple' onClick={() => setActive(false)}>
+						Close
+					</button>
 					<button
 						className='modal-btn ripple'
 						onClick={() => props.updateTask(form.title)}>
-						{' '}
-						{/*  TODO it shoudn't be close after click */}
-						Confirm Change
+						Confirm
 					</button>
 				</div>
-				{/* TODO add close button! */}
 			</div>
 		</div>
 	);

@@ -25,7 +25,6 @@ const TodoItem: React.FC<ITodoItem> = (props: ITodoItem) => {
 	 */
 	const updateTask = (value: string): void => {
 		updateTodo(id, value);
-		setModalActive(false);
 	};
 
 	/**
